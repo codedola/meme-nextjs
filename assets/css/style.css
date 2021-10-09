@@ -1608,13 +1608,14 @@ select.form-control:focus {
   max-width: 170px;
   border-width: 1px;
   justify-content: center;
+  cursor: pointer;
 }
 .ass1-login__send a {
   margin-right: 10px;
   text-align: left;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-login__send a:visited,
 .ass1-login__send a:active,

@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import { notification } from "antd";
 import { useAuthen } from "../helpers/hook/useAuthen";
+import Button from "../components/Button/Button";
+
 //
 interface IFormLogin {
   email: string;
@@ -18,6 +20,7 @@ const initFormData = {
 export default function Login(props) {
   useAuthen();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<IFormLogin>(initFormData);
 
   const errorString = router.query?.error;
@@ -67,11 +70,13 @@ export default function Login(props) {
 
   const handleSubmitData = (e) => {
     e.preventDefault();
+    if (isLoading === true) return;
     const formElement = e.target;
 
     // B1: validation form data
 
     // B2: Submit form
+    setIsLoading(true);
     formElement.submit();
   };
 
@@ -111,9 +116,9 @@ export default function Login(props) {
               <Link href="/register">
                 <a>Đăng ký một tài khoản</a>
               </Link>
-              <button type="submit" className="ass1-btn">
+              <Button type="submit" className="ass1-btn" isLoading={isLoading}>
                 Đăng nhập
-              </button>
+              </Button>
             </div>
           </form>
         </div>

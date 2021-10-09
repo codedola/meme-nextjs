@@ -1,0 +1,16 @@
+.FormGroup {
+  position: relative;
+  margin-bottom: 34px;
+  .FormError {
+    position: absolute;
+    color: #ff2929;
+    font-size: 12px;
+    margin-left: 2px;
+    letter-spacing: -0.4px;
+    margin-top: 4px;
+    left: 2px;
+    i {
+      margin-right: 4px;
+    }
+  }
+}

@@ -11,7 +11,6 @@ function useNotAuthen() {
     const userToken = parseJwt(token);
     if (!userToken) {
       router.push("/login");
-    } else {
     }
   }, [token, router]);
 }
