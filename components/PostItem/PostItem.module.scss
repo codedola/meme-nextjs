@@ -1,0 +1,26 @@
+.DotIcon {
+  display: inline-block;
+  height: 3px;
+  width: 3px;
+  background: #b9b9b9;
+  border-radius: 50%;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+
+.WapperImage {
+  // position: "relative", width: "100%", minHeight: "360px"
+  position: relative;
+  width: 100%;
+  height: 340px;
+}
+
+.PostDayTime {
+  font-size: 16px;
+  .DayTime {
+    letter-spacing: -0.8px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

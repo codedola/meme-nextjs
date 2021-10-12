@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../assets/fonts/font-awesome/css/font-awesome.css";
 import "../assets/css/style.css";
 //
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect } from "react";
 import App, { AppContext, AppProps } from "next/app";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
@@ -12,14 +12,31 @@ import cookie from "cookie";
 import Cookies from "js-cookie";
 import { parseJwt } from "../helpers";
 import userService from "../services/userService";
-import { setGlobalState } from "../state";
-
+import { useGlobalState } from "../state";
+import { actLogin } from "../state/userAction";
+import { actGetListCategory } from "../state/categoriesAction";
+import { dispatch } from "../state";
+import categoryService from "../services/categoryService";
 function MyApp({ Component, pageProps, router }: AppProps) {
-  useEffect(() => {
-    setGlobalState("token", pageProps.token);
-    setGlobalState("currentUser", pageProps.userInfo);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+  const [, setCurrentUser] = useGlobalState("currentUser");
+  const [, setToken] = useGlobalState("currentUser");
+  // useEffect(() => {
+  //   setGlobalState("token", pageProps.token);
+  //   setGlobalState("currentUser", pageProps.userInfo);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
+
+  useMemo(() => {
+    const { token, userInfo: currentUser, categories } = pageProps;
+    dispatch(
+      actLogin({
+        token,
+        currentUser,
+      })
+    );
+    dispatch(actGetListCategory(categories));
   }, []);
+
   const hiddenFooter = useMemo(
     function () {
       const includePaths = ["/", "/posts/[postid]"];
@@ -73,9 +90,9 @@ type TUserToken = {
 
 MyApp.getInitialProps = async (context: AppContext) => {
   let userRes = null;
+  let categoriesRes = null;
   let token = "";
   const appProps = await App.getInitialProps(context);
-
   if (typeof window === "undefined") {
     // SSR
     const cookieStr = context.ctx.req.headers.cookie || "";
@@ -86,6 +103,7 @@ MyApp.getInitialProps = async (context: AppContext) => {
     if (userToken && userToken.id) {
       userRes = await userService.getUserByID(userToken.id);
     }
+    categoriesRes = await categoryService.getList();
   } else {
     // CSR
     const _token = Cookies.get("token");
@@ -95,11 +113,13 @@ MyApp.getInitialProps = async (context: AppContext) => {
       token = _token;
     }
   }
+
   return {
     pageProps: {
       ...appProps.pageProps,
       token,
-      userInfo: userRes && userRes.user,
+      categories: categoriesRes?.categories || [],
+      userInfo: userRes?.user || null,
     },
   };
 };

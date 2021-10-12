@@ -3,11 +3,12 @@ import fetch from "isomorphic-fetch";
 type ConfigType = {
   method?: string;
   data?: any;
+  token?: string;
 };
 
 // data: Record<string, any>, method = "GET"
 const api = {
-  callJson: async (url: string, { method = "GET", data }: ConfigType = {}) => {
+  callJson: async (url: string, { method = "GET", data, token }: ConfigType = {}) => {
     const URL = BASE_URL + url;
     const config = {
       method,
@@ -16,6 +17,10 @@ const api = {
       },
       body: JSON.stringify(data),
     };
+
+    if (token) {
+      config.headers["Authorization"] = `Bearer ${token}`;
+    }
 
     return fetch(URL, config).then((res: any) => res.json());
   },

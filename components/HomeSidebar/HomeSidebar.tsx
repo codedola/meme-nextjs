@@ -1,49 +1,53 @@
-import React from "react";
-import Image from "next/image";
-export default function HomeSidebar() {
+import React, { useMemo } from "react";
+import { PostType } from "../../pages";
+import { useGlobalState } from "../../state";
+import Link from "next/link";
+import { PostItem } from "../PostItem";
+
+type PropsType = {
+  userPosts: PostType[];
+};
+const HomeSidebar: React.FC<PropsType> = ({ userPosts }) => {
+  const [currentUser] = useGlobalState("currentUser");
+  const recentPosts = useMemo(() => {
+    if (userPosts.length > 0) {
+      if (userPosts.length > 3) {
+        return [userPosts[0], userPosts[1], userPosts[2]];
+      } else {
+        return userPosts;
+      }
+    }
+    return [];
+  }, []);
   return (
     <aside className="ass1-aside">
       <div className="ass1-content-head__t">
         <div>Bài viết gần đây.</div>
       </div>
-      <div className="ass1-section">
-        <div className="ass1-section__head">
-          <a href="#" className="ass1-section__avatar ass1-avatar">
-            <Image src="/images/avatar-03.png" alt="avatar" width={50} height={50} />
-          </a>
-          <div>
-            <a href="#" className="ass1-section__name">
-              Trần Văn A
-            </a>
-            <span className="ass1-section__passed">20 phút trước</span>
-          </div>
-          {/* <a href="#" class="ass1-section__link ass1-btn-icon"><i class="icon-Link"></i></a> */}
+      {currentUser ? (
+        <>
+          {recentPosts.map((post, index) => (
+            <PostItem key={index} post={post} isShowFooter={false} />
+          ))}
+          {recentPosts.length === 0 && (
+            <p>
+              Bạn chưa tại bài viết.
+              <Link href="/posts/create">
+                <a>Tạo tại đây</a>
+              </Link>
+            </p>
+          )}
+        </>
+      ) : (
+        <div>
+          Vui lòng đăng nhập để xem nội dung này
+          <Link href="/login">
+            <a>Đăng nhập</a>
+          </Link>
         </div>
-        <div className="ass1-section__content">
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum tempore recusandae, nemo
-            consequuntur rem pariatur ducimus dolorem aperiam nesciunt dolore, ratione aut, corporis
-            laborum? Numquam ad magnam consectetur labore quam?
-          </p>
-        </div>
-        <div className="ass1-section__footer">
-          <a href="#" className="ass1-section__btn-upvote ass1-btn-icon">
-            <i className="fa fa-thumbs-up" aria-hidden="true"></i>
-          </a>
-          <a href="#" className="ass1-section__btn-downvote ass1-btn-icon">
-            <i className="fa fa-thumbs-down" aria-hidden="true"></i>
-          </a>
-          {/* <a href="#" class="ass1-section__btn-repost ass1-btn-icon"><i class="icon-Repost"></i></a> */}
-          <a href="#" className="ass1-section__btn-like ass1-btn-icon">
-            <i className="fa fa-heart" aria-hidden="true"></i>
-            <span>1,274</span>
-          </a>
-          <a href="#" className="ass1-section__btn-comment ass1-btn-icon">
-            <i className="fa fa-comments-o" aria-hidden="true"></i>
-            <span>982</span>
-          </a>
-        </div>
-      </div>
+      )}
     </aside>
   );
-}
+};
+
+export default HomeSidebar;

@@ -17,7 +17,7 @@ const initFormData = {
   password: "",
 };
 
-export default function Login(props) {
+export default function Login() {
   useAuthen();
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);

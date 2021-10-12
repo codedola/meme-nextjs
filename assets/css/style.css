@@ -147,9 +147,9 @@ select.form-control:focus {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-input-copy a:hover {
   opacity: 0.7;
@@ -159,10 +159,10 @@ select.form-control:focus {
   height: 38px;
   padding-left: 12px;
   padding-right: 12px;
-  background-color: #3482e2;
+  background-color: #b9b9b9;
   font-weight: 300;
   border-radius: 6px;
-  border: solid 2px #3482e2;
+  border: solid 2px #b9b9b9;
   align-items: center;
   display: -moz-box;
   display: -ms-flexbox;
@@ -175,9 +175,9 @@ select.form-control:focus {
 .ass1-btn,
 .ass1-btn i {
   color: #ffffff;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-btn:visited,
 .ass1-btn:active,
@@ -188,11 +188,14 @@ select.form-control:focus {
   color: #ffffff;
 }
 .ass1-btn:hover {
-  background-color: #ffffff;
+  background-color: #d5d5d5;
+}
+.ass1-btn:focus {
+  outline-color: #b9b9b9;
 }
 .ass1-btn:hover,
 .ass1-btn:hover i {
-  color: #3482e2;
+  color: #808080;
 }
 .ass1-btn-icon {
   align-items: center;
@@ -229,9 +232,9 @@ select.form-control:focus {
   display: -ms-inline-flexbox;
   display: -webkit-inline-flex;
   display: inline-flex;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-btn-social:hover {
   opacity: 0.6;
@@ -280,9 +283,9 @@ select.form-control:focus {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .btn:visited,
 .btn:active,
@@ -1154,9 +1157,9 @@ select.form-control:focus {
   border: solid 1px #9fa3ac;
   border-radius: calc(6px * 0.6);
   text-align: center;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-section__btn-awesome:visited,
 .ass1-section__btn-awesome:active,
@@ -1175,9 +1178,9 @@ select.form-control:focus {
   border: solid 1px #3482e2;
   border-radius: calc(6px * 0.6);
   text-align: center;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-section__btn-save:visited,
 .ass1-section__btn-save:active,
@@ -2166,7 +2169,7 @@ select.form-control:focus {
   padding-bottom: 15px;
   background-color: #ffffff;
   border-bottom: solid 1px #e5e9ec;
-  z-index: 100000;
+  z-index: 100;
   -webkit-box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
 }
@@ -2367,9 +2370,9 @@ select.form-control:focus {
 }
 .ass1-header__btn-dropdown i {
   cursor: pointer;
-  -webkit-transition: 0.7s;
-  -o-transition: 0.7s;
-  transition: 0.7s;
+  -webkit-transition: 0.2s;
+  -o-transition: 0.2s;
+  transition: 0.2s;
 }
 .ass1-header__btn-dropdown.active {
   z-index: 100;
